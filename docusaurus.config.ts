@@ -6,7 +6,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Plogue Bidule Manual",
-  tagline: "Bidule's missing manual",
+  tagline: "Bidule's unofficial missing manual",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -17,7 +17,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "facebook", // Usually your GitHub org/user name.
+  organizationName: "boonier", // Usually your GitHub org/user name.
   projectName: "docusaurus", // Usually your repo name.
 
   onBrokenLinks: "throw",
@@ -68,7 +68,7 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "Plogue Bidule Manual",
+      title: "(Unofficial) Plogue Bidule Manual",
       logo: {
         alt: "My Site Logo",
         src: "img/logo.svg",
@@ -86,7 +86,13 @@ const config: Config = {
           position: "left",
           label: "Concepts",
         },
-        // { to: "/blog", label: "Blog", position: "left" },
+        // {
+        //   type: "docSidebar",
+        //   sidebarId: "aboutSidebar",
+        //   position: "right",
+        //   label: "About",
+        // },
+        { to: "/docs/about", label: "About", position: "right" },
         {
           href: "https://github.com/facebook/docusaurus",
           label: "GitHub",
@@ -110,16 +116,8 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "X",
-              href: "https://x.com/docusaurus",
+              label: "Official Bidule Forum",
+              href: "https://www.plogue.com/plgfrms/viewforum.php?f=19&sid=75a46fce6100b9d18794b3038a311c34",
             },
           ],
         },
