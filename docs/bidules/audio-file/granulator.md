@@ -27,4 +27,4 @@ This is the description of the Granulator file.
 
 ## Examples
 
-[Granulator Example](example1)
+- Granulator Example

@@ -29,6 +29,5 @@ At its most basic, it is a counter that has a variable rate. It can be used to g
 
 ## Examples
 
-[Simple counter](example1)
-
-[Reading from a buffer](example1)
+- Simple counter
+- Reading from a buffer
