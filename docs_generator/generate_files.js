@@ -2,8 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const yamljs = require("yamljs");
 
-const yamlData = fs.readFileSync("./manual_schema.yaml", "utf8");
-const data = yamljs.parse(yamlData);
+const fromList = process.argv.includes("--from-list");
+const data = fromList
+  ? []
+  : yamljs.parse(fs.readFileSync(path.join(__dirname, "manual_schema.yaml"), "utf8"));
 
 // Templates
 const tableInputs = `| Inlet | Values | Comments |  
@@ -66,7 +68,81 @@ function generateFilesAndFolders(
   });
 }
 
-generateFilesAndFolders(data);
+if (fromList) {
+  generateFromList();
+} else {
+  generateFilesAndFolders(data);
+}
+
+function listPageName(name, folders) {
+  if (/^\d+ channels?$/.test(name)) {
+    return folders.at(-1) === "Terminal"
+      ? `${folders.at(-2)} (Terminal)`
+      : folders.at(-1);
+  }
+  return name
+    .replace(/\s+\(separate \d+ tracks\)$/, " (separate tracks)")
+    .replace(/\s+\((?:\d+ channels?|\d+ outs|\d+x\d+|\d+)\)$/, "")
+    .replace(/\s+\d{2,3}$/, "");
+}
+
+function listGroups(text) {
+  const groups = new Map();
+  text.split(/\r?\n/).forEach((line, index) => {
+    if (!line.trim() || line.trimStart().startsWith("'")) return;
+    const parts = line.split("\t").map((part) => part.trim());
+    if (parts.length < 2 || parts.some((part) => !part)) {
+      throw new Error(`Invalid hierarchy on line ${index + 1}`);
+    }
+    const variant = parts.pop();
+    const name = listPageName(variant, parts);
+    const key = [...parts, name].join("\t");
+    if (!groups.has(key)) groups.set(key, { folders: parts, name, variants: [] });
+    groups.get(key).variants.push(variant);
+  });
+  return [...groups.values()];
+}
+
+function generateFromList() {
+  const text = fs.readFileSync(path.join(__dirname, "biduleslist.txt"), "utf8");
+  const root = path.join(__dirname, "..", "docs", "bidules");
+  const groups = listGroups(text);
+  const dryRun = process.argv.includes("--dry-run");
+  const check = process.argv.includes("--check");
+  let missing = 0;
+  let created = 0;
+  for (const [index, group] of groups.entries()) {
+    let folder = root;
+    for (const label of group.folders) {
+      folder = path.join(folder, slugify(label));
+      const category = path.join(folder, "_category_.json");
+      if (!dryRun && !check) {
+        fs.mkdirSync(folder, { recursive: true });
+        if (!fs.existsSync(category)) {
+          fs.writeFileSync(category, JSON.stringify({
+            label,
+            link: { type: "generated-index" },
+          }, null, 2) + "\n", { flag: "wx" });
+        }
+      }
+    }
+    const file = path.join(folder, `${slugify(group.name).replace(/[\\/]/g, "-")}.md`);
+    if (fs.existsSync(file)) continue;
+    missing++;
+    if (dryRun || check) {
+      console.log(path.relative(root, file), group.variants);
+      continue;
+    }
+    const variants = group.variants.length > 1
+      ? `## Variants\n\n${group.variants.map((name) => `- ${name}`).join("\n")}\n\n`
+      : "";
+    const content = `---\nsidebar_label: ${JSON.stringify(group.name)}\nsidebar_position: ${index}\n---\n\n# ${group.name}\n\nThis is the description of the ${group.name} file.\n\n${variants}## Inlets\n\n${tableInputs}\n\n## Outlets\n\n${tableOutputs}\n\n## Parameters\n\n- param1\n- param2\n- param3\n`;
+    fs.writeFileSync(file, content, { flag: "wx" });
+    created++;
+  }
+  console.log(`${groups.length} grouped pages; ${missing} missing; ${created} created.`);
+  if (check && missing) process.exitCode = 1;
+}
 
 function slugify(str) {
   return str.toLowerCase().replace(/\s+/g, "-").replace(/\(|\)/g, "");

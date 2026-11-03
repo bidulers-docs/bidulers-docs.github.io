@@ -6,8 +6,16 @@ draft: true
 
 # Bidule SDK
 
-tbd
+todo
 
-```code bash
-# could be pretty heavy going for some, but it's a great way to extend Bidule's functionality.
+This is not a support channel for the sdk.
+
+For that, please visit the official [sdk forum](https://plogue.com/bidule-sdk/) forum.
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Hello, Bidule!\n";
+}
 ```

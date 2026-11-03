@@ -1,0 +1,26 @@
+---
+sidebar_label: "Parameter Modulator (Absolute)"
+sidebar_position: 145
+---
+
+# Parameter Modulator (Absolute)
+
+This is the description of the Parameter Modulator (Absolute) file.
+
+## Inlets
+
+| Inlet | Values | Comments |  
+| --- | --- | --- |
+| tbd | tbd | tbd |
+
+## Outlets
+
+| Outlet | Values | Comments |  
+| --- | --- | --- |
+| tbd | tbd | tbd |
+
+## Parameters
+
+- param1
+- param2
+- param3
