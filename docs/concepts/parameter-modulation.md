@@ -1,14 +1,15 @@
 ---
 sidebar_label: "Parameter Modulation"
 sidebar_position: 2
-draft: true
+draft: false
 ---
 
 # Parameter Modulation
 
-tbd
+todo
 
 - the window
 - types of parameter modulation
   - the object
   - the bidule params ui
+- sample accurate parametermodulation

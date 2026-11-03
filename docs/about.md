@@ -49,5 +49,5 @@ The content here is community contributed by [boonier](https://github.com/boonie
 
 ## Credits
 
-- [Plogue](https://plogue.com/) the team based in Montreal whom created and maintain Bidule. Also checkout their other amazing products.
+- [Plogue](https://plogue.com/) the team based in Montreal whom created and maintain Bidule. Also check out their other amazing products.
 - [Docusaurus](https://docusaurus.io/) for the documentation platform

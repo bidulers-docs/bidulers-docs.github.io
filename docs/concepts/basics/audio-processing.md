@@ -1,7 +1,7 @@
 ---
 sidebar_label: "What is Audio Processing?"
 sidebar_position: 1
-draft: true
+draft: false
 ---
 
 # Audio Processing

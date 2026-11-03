@@ -40,19 +40,20 @@ const config: Config = {
           editUrl:
             "https://github.com/bidulers-docs/bidulers-docs.github.io/tree/main/",
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ["rss", "atom"],
-            xslt: true,
-          },
-          editUrl:
-            "https://github.com/bidulers-docs/bidulers-docs.github.io/tree/main/",
-          // Useful options to enforce blogging best practices
-          onInlineTags: "warn",
-          onInlineAuthors: "warn",
-          onUntruncatedBlogPosts: "warn",
-        },
+        // blog: {
+        //   showReadingTime: true,
+        //   feedOptions: {
+        //     type: ["rss", "atom"],
+        //     xslt: true,
+        //   },
+        //   editUrl:
+        //     "https://github.com/bidulers-docs/bidulers-docs.github.io/tree/main/",
+        //   // Useful options to enforce blogging best practices
+        //   onInlineTags: "warn",
+        //   onInlineAuthors: "warn",
+        //   onUntruncatedBlogPosts: "warn",
+        // },
+        blog: false,
         theme: {
           customCss: "./src/css/custom.css",
         },
@@ -124,10 +125,10 @@ const config: Config = {
         {
           title: "More",
           items: [
-            {
-              label: "Blog",
-              to: "/blog",
-            },
+            // {
+            //   label: "Blog",
+            //   to: "/blog",
+            // },
             {
               label: "GitHub",
               href: "https://github.com/bidulers-docs/bidulers-docs.github.io",

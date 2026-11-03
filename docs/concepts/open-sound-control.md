@@ -1,12 +1,12 @@
 ---
 sidebar_label: "Open Sound Control"
 sidebar_position: 3
-draft: true
+draft: false
 ---
 
 # Open Sound Control (OSC)
 
-tbd
+todo
 
 - the possibilities
 - it's like an api for bidule
