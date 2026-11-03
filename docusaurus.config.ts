@@ -6,7 +6,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Plogue Bidule Manual",
-  tagline: "Bidule's unofficial missing manual",
+  tagline: "Bidule's unofficial manual",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -63,6 +63,10 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
+    colorMode: {
+      defaultMode: "dark",
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       title: "(Unofficial) Plogue Bidule Manual",
       logo: {
@@ -82,12 +86,12 @@ const config: Config = {
           position: "left",
           label: "Concepts",
         },
-        // {
-        //   type: "docSidebar",
-        //   sidebarId: "aboutSidebar",
-        //   position: "right",
-        //   label: "About",
-        // },
+        {
+          type: "docSidebar",
+          sidebarId: "librariesSidebar",
+          position: "left",
+          label: "Libraries",
+        },
         { to: "/docs/about", label: "About", position: "right" },
         {
           href: "https://github.com/bidulers-docs/bidulers-docs.github.io",
